@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching and Learning Tools — ICT &amp; Life Orientation</title>
+<style>
+  :root{
+    --teal:#0d9488; --teal-d:#0b7a70; --teal-l:#5eead4;
+    --orange:#ea580c; --orange-d:#c2410c; --orange-l:#fdba74;
+    --navy:#13263d; --navy-2:#1e3a5f;
+    --ink:#13263d; --muted:#5b6b7d; --line:#e3e9ef;
+    --bg:#f4f7fa; --card:#ffffff;
+    --lo:#0d9488; --ict:#ea580c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .poster{max-width:1000px;margin:0 auto;background:var(--card);
+    box-shadow:0 10px 60px rgba(19,38,61,.14);}
+  a{color:inherit;}
+  /* ===== HERO ===== */
+  .hero{position:relative;background:
+      radial-gradient(1200px 400px at 85% -10%,rgba(94,234,212,.22),transparent 60%),
+      radial-gradient(900px 400px at 0% 120%,rgba(234,88,12,.20),transparent 55%),
+      linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:#fff;padding:52px 48px 44px;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    border:28px solid rgba(94,234,212,.12);border-radius:50%;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--teal-l);
+    border:1px solid rgba(94,234,212,.4);border-radius:999px;padding:6px 14px;margin-bottom:18px;}
+  .hero h1{font-size:46px;line-height:1.08;font-weight:800;letter-spacing:-.5px;max-width:14ch;}
+  .hero h1 span{color:var(--orange-l);}
+  .hero .sub{margin-top:16px;max-width:60ch;font-size:16px;color:#d6e0ea;}
+  .by{margin-top:20px;display:flex;align-items:center;gap:12px;}
+  .by .dot{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--orange));
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;}
+  .by .who{font-size:13px;color:#c4d2df;}
+  .by .who b{display:block;color:#fff;font-size:15px;}
+  /* stat strip */
+  .stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    margin:34px 0 0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:16px;overflow:hidden;}
+  .stat{padding:18px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.10);}
+  .stat:last-child{border-right:0;}
+  .stat .n{font-size:30px;font-weight:800;color:var(--teal-l);line-height:1;}
+  .stat .l{display:block;margin-top:7px;font-size:11.5px;letter-spacing:.04em;color:#cdd9e5;text-transform:uppercase;}
+  .legend{margin-top:20px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:#d6e0ea;}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .key{width:13px;height:13px;border-radius:4px;display:inline-block;}
+  .key.lo{background:var(--teal-l);} .key.ict{background:var(--orange-l);}
+  /* ===== SECTION SCAFFOLD ===== */
+  .band{padding:44px 48px;}
+  .band.alt{background:#f7fafc;}
+  .shead{display:flex;align-items:center;gap:16px;margin-bottom:8px;}
+  .snum{flex:none;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;
+    justify-content:center;font-size:20px;font-weight:800;color:#fff;
+    background:linear-gradient(135deg,var(--teal),var(--teal-d));box-shadow:0 6px 18px rgba(13,148,136,.3);}
+  .snum.o{background:linear-gradient(135deg,var(--orange),var(--orange-d));box-shadow:0 6px 18px rgba(234,88,12,.3);}
+  .snum.n{background:linear-gradient(135deg,var(--navy-2),var(--navy));}
+  .shead h2{font-size:25px;font-weight:800;letter-spacing:-.3px;}
+  .shead .kick{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);}
+  .lead{color:var(--muted);font-size:15px;max-width:72ch;margin:4px 0 26px 68px;}
+  @media(max-width:640px){.lead{margin-left:0;}}
+  /* foundation chips */
+  .foundation{margin-left:68px;background:linear-gradient(135deg,#ecfdf9,#fff);
+    border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:14px;padding:20px 22px;}
+  .foundation h3{font-size:16px;margin-bottom:4px;color:var(--navy);}
+  .foundation p{font-size:13.5px;color:var(--muted);margin-bottom:12px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{background:#fff;border:1px solid var(--teal-l);color:var(--teal-d);
+    font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:999px;}
+  @media(max-width:640px){.foundation{margin-left:0;}}
+  /* ===== TOOLS GRID ===== */
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-left:68px;}
+  @media(max-width:760px){.tools{grid-template-columns:1fr;margin-left:0;}}
+  .tool{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;
+    display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s;}
+  .tool:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(19,38,61,.12);}
+  .thead{display:flex;align-items:center;gap:13px;padding:16px 18px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#fbfdff,#fff);}
+  .logo{flex:none;width:46px;height:46px;border-radius:12px;background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .logo img{width:30px;height:30px;object-fit:contain;}
+  .thead h3{font-size:17px;font-weight:800;}
+  .tags{margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;}
+  .tag{font-size:10.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    padding:3px 9px;border-radius:999px;}
+  .tag.lo{background:#d9f5f0;color:var(--teal-d);}
+  .tag.ict{background:#ffe7d6;color:var(--orange-d);}
+  .tag.both{background:#e8eef5;color:var(--navy-2);}
+  .tbody{padding:16px 18px;flex:1;}
+  .label{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--orange);}
+  .use{font-size:13.5px;color:#30465c;margin:6px 0 13px;}
+  .act{font-size:12.5px;color:#30465c;background:#f6f9fb;border-radius:10px;padding:10px 12px;margin-top:9px;}
+  .act .tag{display:inline-block;margin-bottom:5px;}
+  .tfoot{padding:13px 18px;border-top:1px solid var(--line);background:#fbfdff;}
+  .tfoot .site{font-size:12.5px;font-weight:700;color:var(--teal-d);text-decoration:none;word-break:break-all;}
+  .tfoot .site:hover{text-decoration:underline;}
+  .mats{margin-top:11px;display:flex;flex-direction:column;gap:7px;}
+  .ml-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .mat-link{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;
+    text-decoration:none;color:#fff;background:var(--teal);padding:8px 12px;border-radius:9px;
+    transition:background .15s,transform .1s;width:fit-content;max-width:100%;}
+  .mat-link:hover{background:var(--teal-d);transform:translateX(2px);}
+  .mat-link.alt{background:var(--orange);}
+  .mat-link.alt:hover{background:var(--orange-d);}
+  /* ===== ACTIVITY CARDS ===== */
+  .acts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-left:68px;}
+  @media(max-width:760px){.acts{grid-template-columns:1fr;margin-left:0;}}
+  .acard{border:1px solid var(--line);border-left:6px solid var(--teal);border-radius:14px;
+    padding:18px 20px;background:#fff;}
+  .acard.ict{border-left-color:var(--orange);}
+  .acard h3{font-size:16.5px;font-weight:800;margin-bottom:6px;}
+  .ameta{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:12px;}
+  .arow{display:flex;gap:10px;margin-bottom:10px;}
+  .arow .ic{flex:none;width:24px;height:24px;border-radius:7px;background:#d9f5f0;color:var(--teal-d);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;}
+  .acard.ict .arow .ic{background:#ffe7d6;color:var(--orange-d);}
+  .arow p{font-size:13px;color:#30465c;}
+  .arow p b{color:var(--navy);}
+  /* ===== EVIDENCE ===== */
+  .evg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-left:68px;}
+  @media(max-width:760px){.evg{grid-template-columns:1fr 1fr;margin-left:0;}}
+  @media(max-width:460px){.evg{grid-template-columns:1fr;}}
+  .ev{border-radius:14px;padding:18px 16px;color:#fff;position:relative;overflow:hidden;}
+  .ev:nth-child(1){background:linear-gradient(145deg,var(--teal),var(--teal-d));}
+  .ev:nth-child(2){background:linear-gradient(145deg,var(--orange),var(--orange-d));}
+  .ev:nth-child(3){background:linear-gradient(145deg,var(--navy-2),var(--navy));}
+  .ev:nth-child(4){background:linear-gradient(145deg,#0ea5a0,#0d9488);}
+  .ev h3{font-size:14.5px;font-weight:800;margin-bottom:12px;}
+  .ev ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .ev li{font-size:12.5px;line-height:1.35;}
+  .ev li a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1.5px solid rgba(255,255,255,.55);}
+  .ev li a:hover{border-bottom-color:#fff;}
+  .ev li.plain{opacity:.92;}
+  /* ===== FOOTER ===== */
+  footer{background:var(--navy);color:#cdd9e5;padding:28px 48px;text-align:center;}
+  footer .sig{font-weight:800;color:#fff;font-size:16px;margin-bottom:6px;}
+  footer p{font-size:12px;}
+  @media(max-width:640px){.hero{padding:38px 24px;}.hero h1{font-size:34px;}.band{padding:34px 24px;}
+    .stats{grid-template-columns:1fr 1fr;}.stat:nth-child(2){border-right:0;}}
+</style>
+</head>
+<body>
+<div class="poster">
+<header class="hero">
+  <span class="eyebrow">◆ Teaching Portfolio • CAPS Grades 10–12</span>
+  <h1>Teaching and <span>Learning Tools</span></h1>
+  <p class="sub">The digital tools I bring into my classrooms to plan lessons, build resources and create real engagement — across Information &amp; Communication Technology and Life Orientation. Every tool is paired with a CAPS-aligned activity and the actual material I made.</p>
+  <div class="by">
+    <span class="dot">M</span>
+    <span class="who">Compiled by<b>M. Mokoena — ICT &amp; Life Orientation</b></span>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="n">8</span><span class="l">Teaching &amp; learning tools</span></div>
+    <div class="stat"><span class="n">2</span><span class="l">Subjects • ICT &amp; LO</span></div>
+    <div class="stat"><span class="n">10–12</span><span class="l">Grades covered</span></div>
+    <div class="stat"><span class="n">9</span><span class="l">Materials I built</span></div>
+  </div>
+  <div class="legend">
+    <span><i class="key lo"></i> Life Orientation</span>
+    <span><i class="key ict"></i> ICT</span>
+    <span>▸ Every blue / orange button opens a real material I made</span>
+  </div>
+</header>
+
+<section class="band">
+  <div class="shead">
+    <div class="snum n">01</div>
+    <div><p class="kick">Overview</p><h2>Tools that directly support my teaching</h2></div>
+  </div>
+  <p class="lead">I chose tools beyond the usual LMS platforms (Moodle, Google Classroom, Blackboard and the like) so I could show creativity and match each tool to a real purpose in my lessons. For ICT I designed my own teaching tutorials from scratch — the foundation below — then extended that work with the tools on this page and built fresh, CAPS-aligned activities for <strong>both</strong> Life Orientation and ICT.</p>
+  <div class="foundation">
+    <h3>ICT tutorials I designed myself</h3>
+    <p>Self-made teaching slides I use to introduce core ICT ideas and digital-skills tools to my learners:</p>
+    <div class="chips">
+      <span class="chip">Using ICT for Teaching &amp; Learning</span>
+      <span class="chip">TPACK &amp; Authentic Learning</span>
+      <span class="chip">Digital Disruption</span>
+      <span class="chip">Google Forms Quizzes</span>
+      <span class="chip">Socrative Assessment</span>
+      <span class="chip">Teaching with Spreadsheets</span>
+    </div>
+  </div>
+</section>
+<section class="band alt">
+  <div class="shead">
+    <div class="snum o">02</div>
+    <div><p class="kick">The Toolkit</p><h2>8 tools I use, and how</h2></div>
+  </div>
+  <p class="lead">Each tile shows the tool, a picture of its app/website, a link to its site, how I use it to support my teaching, a real CAPS Grade 10–12 activity, and a button to the actual material I made with it.</p>
+  <div class="tools">
+
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva logo"></div>
+        <div><h3>Canva for Education</h3><div class="tags"><span class="tag both">LO + ICT</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">I design CAPS-aligned slides, worksheets and posters, and set learners up to co-create visual projects. It is free for teachers and works on low-spec devices through the browser.</p>
+        <div class="act"><span class="tag lo">LO • Gr 11 • Human Rights</span>Learners design a “Know Your Rights” poster explaining three rights from the Bill of Rights, then present and vote on the clearest design.</div>
+        <div class="act"><span class="tag ict">ICT • Gr 10 • Social Implications</span>Learners build an infographic on responsible, ethical technology use (netiquette, privacy, screen balance) for the computer room.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://www.canva.com/education/" target="_blank" rel="noopener">canva.com/education</a>
+        <div class="mats"><span class="ml-label">Materials I made</span>
+          <a class="mat-link" href="materials/poster-lo-know-your-rights.html">▸ LO “Know Your Rights” poster</a>
+          <a class="mat-link alt" href="materials/infographic-ict-online-safety.html">▸ ICT online-safety infographic</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=mentimeter.com&sz=128" alt="Mentimeter logo"></div>
+        <div><h3>Mentimeter</h3><div class="tags"><span class="tag lo">LO lead</span><span class="tag ict">ICT</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">I run live, anonymous polls and word clouds so every learner can respond honestly — especially for sensitive LO topics where learners may not want to speak out loud.</p>
+        <div class="act"><span class="tag lo">LO • Gr 12 • Development of the Self</span>Anonymous word cloud: “One word for how exams make you feel.” We read it together, then build a class list of healthy stress-coping strategies.</div>
+        <div class="act"><span class="tag ict">ICT • Gr 10 • Internet &amp; E-safety</span>Quick true/false poll on password and phishing myths to check understanding before the practical lesson.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://www.mentimeter.com/" target="_blank" rel="noopener">mentimeter.com</a>
+        <div class="mats"><span class="ml-label">Material I made</span>
+          <a class="mat-link" href="materials/poll-lo-wordcloud.html">▸ LO exam-stress word cloud</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=kahoot.com&sz=128" alt="Kahoot logo"></div>
+        <div><h3>Kahoot!</h3><div class="tags"><span class="tag both">LO + ICT</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">I use game-based quizzes for fast, fun formative review at the start or end of a topic. The live leaderboard keeps energy high and shows me instantly which concepts to reteach.</p>
+        <div class="act"><span class="tag lo">LO • Gr 10 • Careers</span>A quiz matching careers to study paths and NQF levels, used to open our career-research unit.</div>
+        <div class="act"><span class="tag ict">ICT • Gr 10 • Systems Technologies</span>Hardware vs software, input vs output device quiz to consolidate terminology before the test.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://kahoot.com/" target="_blank" rel="noopener">kahoot.com</a>
+        <div class="mats"><span class="ml-label">Material I made</span>
+          <a class="mat-link" href="materials/quiz-lo-careers.html">▸ LO careers quiz (playable)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=padlet.com&sz=128" alt="Padlet logo"></div>
+        <div><h3>Padlet</h3><div class="tags"><span class="tag both">LO + ICT</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">I use shared boards for collaborative brainstorming, curated resource walls and quick exit tickets. Learners post from any device with just a link — no accounts needed.</p>
+        <div class="act"><span class="tag lo">LO • Gr 12 • Environmental Responsibility</span>Each learner posts one local environmental issue plus one realistic action; we group the posts into a class action plan.</div>
+        <div class="act"><span class="tag ict">ICT • Gr 11 • Solution Development</span>A shared wall where learners collect and rate the best free coding and design resources they find.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://padlet.com/" target="_blank" rel="noopener">padlet.com</a>
+        <div class="mats"><span class="ml-label">Material I made</span>
+          <a class="mat-link" href="materials/board-lo-social-issues.html">▸ LO social-issues board</a>
+        </div>
+      </div>
+    </div>
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=genially.com&sz=128" alt="Genially logo"></div>
+        <div><h3>Genially</h3><div class="tags"><span class="tag both">LO + ICT</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">I create interactive images, clickable diagrams and classroom “escape rooms.” Learners click hotspots to reveal information, which turns a static topic into exploration.</p>
+        <div class="act"><span class="tag ict">ICT • Gr 10 • Systems Technologies</span>An interactive labelled diagram of a computer: learners click each part to reveal its function, then complete a self-check escape room on internet safety.</div>
+        <div class="act"><span class="tag lo">LO • Gr 11 • Human Rights</span>A clickable timeline of South Africa’s Constitution and Bill of Rights, used for a guided inquiry task.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://genially.com/" target="_blank" rel="noopener">genially.com</a>
+        <div class="mats"><span class="ml-label">Material I made</span>
+          <a class="mat-link alt" href="materials/diagram-ict-computer.html">▸ ICT interactive computer diagram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=scratch.mit.edu&sz=128" alt="Scratch logo"></div>
+        <div><h3>Scratch</h3><div class="tags"><span class="tag ict">ICT lead</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">I teach the logic of coding with drag-and-drop blocks — no typing syntax to slow beginners down. It runs in the browser and has an offline editor, which suits low-resource classrooms.</p>
+        <div class="act"><span class="tag ict">ICT • Gr 10–11 • Algorithms</span>Learners plan an algorithm in plain steps, then build a simple quiz game or animate the water cycle — applying sequence, loops and conditions.</div>
+        <div class="act"><span class="tag both">Cross-curricular</span>Learners code an LO awareness mini-game (e.g. a “make the healthy choice” quiz) to share with younger grades.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://scratch.mit.edu/" target="_blank" rel="noopener">scratch.mit.edu</a>
+        <div class="mats"><span class="ml-label">Material I made</span>
+          <a class="mat-link alt" href="materials/activity-ict-algorithm.html">▸ ICT Scratch coding activity</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=bookcreator.com&sz=128" alt="Book Creator logo"></div>
+        <div><h3>Book Creator</h3><div class="tags"><span class="tag lo">LO lead</span><span class="tag ict">ICT</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">Learners build multimodal digital books combining text, images, drawings and voice. I use it for portfolios and reflective projects that give every learner a voice.</p>
+        <div class="act"><span class="tag lo">LO • Gr 12 • Careers</span>Each learner creates a “My Career Path” digital book: a researched career, the subjects and NQF level it needs, and the application steps — their own planning evidence.</div>
+        <div class="act"><span class="tag lo">LO • Gr 10 • Development of the Self</span>A “Me and my life roles” book exploring self-image, values and goals.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://bookcreator.com/" target="_blank" rel="noopener">bookcreator.com</a>
+        <div class="mats"><span class="ml-label">Material I made</span>
+          <a class="mat-link" href="materials/workbook-lo-career-path.html">▸ LO “My Career Path” workbook</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="thead">
+        <div class="logo"><img src="https://www.google.com/s2/favicons?domain=wordwall.net&sz=128" alt="Wordwall logo"></div>
+        <div><h3>Wordwall</h3><div class="tags"><span class="tag both">LO + ICT</span></div></div>
+      </div>
+      <div class="tbody">
+        <span class="label">How I use it</span>
+        <p class="use">I turn one set of terms into several ready-made games (match-up, quiz, random wheel, anagram) in minutes. Great for drilling vocabulary and for quick warm-ups.</p>
+        <div class="act"><span class="tag ict">ICT • Gr 10 • Terminology</span>A match-up game pairing ICT terms with definitions (hardware, software, input, output, storage) as a lesson starter.</div>
+        <div class="act"><span class="tag lo">LO • Gr 11 • Careers</span>A “random wheel” of career fields where each learner names the subjects and skills that field needs.</div>
+      </div>
+      <div class="tfoot">
+        <a class="site" href="https://wordwall.net/" target="_blank" rel="noopener">wordwall.net</a>
+        <div class="mats"><span class="ml-label">Material I made</span>
+          <a class="mat-link alt" href="materials/game-ict-terms-matchup.html">▸ ICT terms match-up (playable)</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="band">
+  <div class="shead">
+    <div class="snum">03</div>
+    <div><p class="kick">Life Orientation</p><h2>Learning activities I built for LO</h2></div>
+  </div>
+  <p class="lead">CAPS-aligned activities for Grades 10–12. Each card lists the <b>learning activity</b>, the <b>classroom activity</b>, and the <b>learner-engagement opportunity</b> it creates — with a button to the real material.</p>
+  <div class="acts">
+
+    <div class="acard">
+      <h3>Who am I? Self-image and goals</h3>
+      <div class="ameta">Grade 10 • Development of the Self in Society • Tool: Book Creator</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners explore self-awareness, self-image and their different life roles, then set one short-term and one long-term goal using a SMART structure.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> each learner builds a short “Me and my life roles” digital book — a page on strengths, a page on values, and a goal page with steps and a timeline.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> a gallery walk where learners view each other’s books on tablets and leave one encouraging comment, building a positive class climate.</p></div>
+      <div class="mats"><span class="ml-label">View the material</span><a class="mat-link" href="materials/workbook-lo-career-path.html">▸ “My Career Path” workbook (Book Creator)</a></div>
+    </div>
+
+    <div class="acard">
+      <h3>Know your rights, respect difference</h3>
+      <div class="ameta">Grade 11 • Democracy &amp; Human Rights • Tools: Genially + Canva</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners investigate the Bill of Rights, forms of discrimination (race, gender, disability) and the value of diversity and nation-building in South Africa.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> in groups they explore an interactive Genially timeline of the Constitution, then design a Canva “Know Your Rights” awareness poster for three chosen rights.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> a structured debate — “When do rights come with responsibilities?” — where each group defends a position using evidence from their research.</p></div>
+      <div class="mats"><span class="ml-label">View the material</span><a class="mat-link" href="materials/poster-lo-know-your-rights.html">▸ “Know Your Rights” poster (Canva)</a></div>
+    </div>
+
+    <div class="acard">
+      <h3>Contemporary social issues in my community</h3>
+      <div class="ameta">Grade 11 • Social &amp; Environmental Responsibility • Tools: Mentimeter + Padlet</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners examine a contemporary social or environmental issue affecting their community (e.g. substance abuse, pollution, unemployment) and possible responses.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> an anonymous Mentimeter poll surfaces honest views and myths; learners then post one issue and one realistic action to a shared Padlet, grouped into a class action plan.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> small groups adopt one action from the plan and report back the following week on what they did and what they learned.</p></div>
+      <div class="mats"><span class="ml-label">View the materials</span><a class="mat-link" href="materials/board-lo-social-issues.html">▸ Social-issues board (Padlet)</a><a class="mat-link alt" href="materials/poll-lo-wordcloud.html">▸ Word cloud (Mentimeter)</a></div>
+    </div>
+
+    <div class="acard">
+      <h3>My career path</h3>
+      <div class="ameta">Grade 12 • Careers &amp; Career Choices • Tools: Kahoot! + Book Creator</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners link study and career fields, NQF levels and admission requirements, and practise decision-making and the application process for further study or work.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> a Kahoot! review of career fields and NQF levels opens the unit; learners then build a “My Career Path” digital book researching one career, its requirements and application steps.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> a mini careers expo where learners pitch their researched career to peers and answer questions, as planning evidence for their portfolio.</p></div>
+      <div class="mats"><span class="ml-label">View the materials</span><a class="mat-link" href="materials/quiz-lo-careers.html">▸ Careers quiz (Kahoot!)</a><a class="mat-link alt" href="materials/workbook-lo-career-path.html">▸ Career workbook (Book Creator)</a></div>
+    </div>
+
+  </div>
+</section>
+<section class="band alt">
+  <div class="shead">
+    <div class="snum o">04</div>
+    <div><p class="kick">Information &amp; Communication Technology</p><h2>Learning activities I built for ICT</h2></div>
+  </div>
+  <p class="lead">CAPS-aligned activities for Grades 10–12, designed to run even in a low-resource classroom. Each card lists the <b>learning activity</b>, the <b>classroom activity</b>, and the <b>learner-engagement opportunity</b>.</p>
+  <div class="acts">
+
+    <div class="acard ict">
+      <h3>Inside the computer: systems technologies</h3>
+      <div class="ameta">Grade 10 • Systems Technologies • Tools: Genially + Wordwall</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners identify hardware and software, input and output devices, and storage, and explain how the parts of a computer work together.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> learners explore an interactive Genially diagram of a computer, clicking each part to reveal its function, then play a Wordwall match-up of terms and definitions.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> a team “key-word relay” where each learner must define a term before passing to the next — fast, active recall.</p></div>
+      <div class="mats"><span class="ml-label">View the materials</span><a class="mat-link alt" href="materials/diagram-ict-computer.html">▸ Interactive computer diagram (Genially)</a><a class="mat-link" href="materials/game-ict-terms-matchup.html">▸ Terms match-up (Wordwall)</a></div>
+    </div>
+
+    <div class="acard ict">
+      <h3>Safe and ethical online</h3>
+      <div class="ameta">Grade 10 • Social Implications / Internet • Tools: Mentimeter + Canva</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners examine the social implications of technology — privacy, security, netiquette, cyberbullying and responsible use.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> a Mentimeter true/false poll checks password and phishing myths; learners then create a Canva infographic on responsible technology use for the computer room.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> a “would you click?” scenario round where learners vote and justify their choice on realistic online situations.</p></div>
+      <div class="mats"><span class="ml-label">View the material</span><a class="mat-link alt" href="materials/infographic-ict-online-safety.html">▸ Online-safety infographic (Canva)</a></div>
+    </div>
+
+    <div class="acard ict">
+      <h3>Thinking in algorithms: intro to coding</h3>
+      <div class="ameta">Grade 10–11 • Algorithms &amp; Solution Development • Tool: Scratch</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners plan an algorithm as a clear sequence of steps, then apply sequence, loops and conditions to solve a problem.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> starting from plain-language pseudocode, learners build a simple quiz game or animate the water cycle in Scratch; the offline editor keeps it working without steady internet.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> a “swap and improve” round where pairs test each other’s projects and suggest one upgrade — real feedback and iteration.</p></div>
+      <div class="mats"><span class="ml-label">View the material</span><a class="mat-link alt" href="materials/activity-ict-algorithm.html">▸ Scratch coding activity (worksheet)</a></div>
+    </div>
+
+    <div class="acard ict">
+      <h3>Working with data: spreadsheets</h3>
+      <div class="ameta">Grade 11 • Spreadsheets • Tools: my Spreadsheets tutorial + Google Sheets</div>
+      <div class="arow"><span class="ic">L</span><p><b>Learning activity:</b> learners organise data in rows and columns and use basic formulas (SUM, AVERAGE) and a chart to interpret results — building on my own Spreadsheets tutorial.</p></div>
+      <div class="arow"><span class="ic">C</span><p><b>Classroom activity:</b> learners build a class marks or budget table, calculate totals and averages, and create a chart to visualise the data.</p></div>
+      <div class="arow"><span class="ic">E</span><p><b>Learner engagement:</b> a “read the chart” challenge where learners draw one conclusion from their data and defend it to the group.</p></div>
+    </div>
+
+  </div>
+</section>
+<section class="band">
+  <div class="shead">
+    <div class="snum n">05</div>
+    <div><p class="kick">Possible Evidence</p><h2>What this toolkit produces for my portfolio</h2></div>
+  </div>
+  <p class="lead">The tools and activities above generate concrete evidence I can collect and show. Every linked item below opens the real material I made.</p>
+  <div class="evg">
+    <div class="ev"><h3>Lesson materials</h3><ul>
+      <li><a href="materials/infographic-ict-online-safety.html">Canva infographic &amp; posters</a></li>
+      <li class="plain">My self-made ICT tutorials</li>
+      <li><a href="materials/diagram-ict-computer.html">Genially interactive diagram</a></li>
+    </ul></div>
+    <div class="ev"><h3>Learning activities</h3><ul>
+      <li><a href="materials/activity-ict-algorithm.html">Scratch coding activity</a></li>
+      <li><a href="materials/workbook-lo-career-path.html">“My Career Path” workbook</a></li>
+      <li><a href="materials/quiz-lo-careers.html">Playable careers quiz</a></li>
+    </ul></div>
+    <div class="ev"><h3>Classroom resources</h3><ul>
+      <li><a href="materials/poster-lo-know-your-rights.html">“Know Your Rights” poster</a></li>
+      <li><a href="materials/board-lo-social-issues.html">Shared Padlet resource wall</a></li>
+      <li><a href="materials/game-ict-terms-matchup.html">Wordwall terms match-up</a></li>
+    </ul></div>
+    <div class="ev"><h3>Learner engagement</h3><ul>
+      <li><a href="materials/poll-lo-wordcloud.html">Anonymous Mentimeter word cloud</a></li>
+      <li class="plain">Debates, gallery walks &amp; expos</li>
+      <li class="plain">Peer feedback on projects</li>
+    </ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="sig">M • Mokoena</div>
+  <p>Teaching and Learning Tools — ICT &amp; Life Orientation • CAPS Grades 10–12 • Part of my teaching portfolio.</p>
+</footer>
+</div>
+</body>
+</html>
